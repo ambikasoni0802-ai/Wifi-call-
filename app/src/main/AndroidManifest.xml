@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    AndroidManifest.xml
+    Declares all app components (activities, services), required hardware features,
+    and runtime permissions. Every component must be listed here or the OS won't know
+    about it.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ==================== PERMISSIONS ==================== -->
+
+    <!-- Internet access – required for WebRTC, Firebase, and all network calls -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Monitor network state – used to show "No Internet" banner -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Microphone – required for WebRTC voice calls -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Camera – optional; reserved for future video call support -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Vibrate – for incoming call ring -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Post notifications (Android 13+) – for incoming call FCM notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Foreground service – keeps WebRTC alive when app is backgrounded -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+
+    <!-- Wake lock – keeps CPU on during a call -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Read external storage (≤ API 32) / media images (API 33+) for profile photo -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- Hardware features declared as optional so the app installs on non-camera devices -->
+    <uses-feature android:name="android.hardware.microphone" android:required="true" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.WiFiCall"
+        android:usesCleartextTraffic="false">
+
+        <!-- ==================== ACTIVITIES ==================== -->
+
+        <!-- Splash / router: decides whether to show login or home -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.WiFiCall.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Login screen -->
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Registration screen -->
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Main app shell (holds bottom navigation + fragments) -->
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false" />
+
+        <!-- Active call screen (outgoing call UI) -->
+        <activity
+            android:name=".ui.call.CallActivity"
+            android:exported="false"
+            android:showOnLockScreen="true"
+            android:turnScreenOn="true" />
+
+        <!-- Incoming call screen (shown via FCM notification) -->
+        <activity
+            android:name=".ui.call.IncomingCallActivity"
+            android:exported="true"
+            android:showOnLockScreen="true"
+            android:turnScreenOn="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="com.wificall.INCOMING_CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- ==================== SERVICES ==================== -->
+
+        <!-- Firebase Cloud Messaging handler – receives call invitations and signals -->
+        <service
+            android:name=".service.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- WebRTC foreground service – keeps the peer connection alive in background -->
+        <service
+            android:name=".service.WebRTCService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <!-- FCM default notification channel (sets icon and colour for data messages) -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_call_notification" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/seed" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="incoming_calls" />
+
+    </application>
+
+</manifest>
