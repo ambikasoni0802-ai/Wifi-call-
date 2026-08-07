@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    colors.xml
+    Material 3 seed colour + semantic call colours.
+    The Material Theme Builder generates the full M3 colour scheme from `seed`.
+    App-specific semantic colours (call states) are defined manually below.
+-->
+<resources>
+    <!-- Material 3 seed colour – drives the entire generated theme palette -->
+    <color name="seed">#0077B6</color>  <!-- Deep ocean blue -->
+
+    <!-- Semantic colours for call UI -->
+    <color name="call_incoming">#2E7D32</color>  <!-- Green  – accept / incoming -->
+    <color name="call_outgoing">#1565C0</color>  <!-- Blue   – outgoing call arrow -->
+    <color name="call_missed">#C62828</color>    <!-- Red    – missed call -->
+    <color name="call_end">#D32F2F</color>       <!-- Red    – end call button -->
+</resources>
