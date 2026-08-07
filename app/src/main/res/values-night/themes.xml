@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- themes.xml (dark/night) – overrides applied automatically in dark mode -->
+<resources>
+    <style name="Theme.WiFiCall" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#82CFFF</item>        <!-- Lighter blue for dark bg -->
+        <item name="colorPrimaryVariant">#004E72</item>
+        <item name="colorOnPrimary">#003549</item>
+        <item name="colorSecondary">#59D4FF</item>
+        <item name="colorOnSecondary">#003544</item>
+        <item name="colorSurface">#1A1C1E</item>
+        <item name="colorOnSurface">#E2E2E6</item>
+        <item name="colorOnSurfaceVariant">#C2C7CF</item>
+        <item name="colorSurfaceVariant">#42474E</item>
+        <item name="colorError">#FFB4AB</item>
+        <item name="colorOnError">#690005</item>
+    </style>
+</resources>
