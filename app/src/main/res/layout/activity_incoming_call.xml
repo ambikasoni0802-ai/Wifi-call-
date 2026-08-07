@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_incoming_call.xml
+    Full-screen incoming call screen shown on the lock screen via FCM.
+    Large Accept (green) and Reject (red) buttons following Material 3.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <!-- Pulsing ring animation could be added here as a Lottie/AnimationView -->
+    <ImageView
+        android:id="@+id/ivCallerAvatar"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@drawable/ic_default_avatar"
+        android:contentDescription="Caller avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvCallerName"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginBottom="24dp" />
+
+    <!-- "Incoming WiFi Call" label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Incoming WiFi Call"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp" />
+
+    <!-- Caller name -->
+    <TextView
+        android:id="@+id/tvCallerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceHeadlineLarge"
+        android:textColor="?attr/colorOnSurface"
+        android:text="Caller Name"
+        app:layout_constraintTop_toBottomOf="@id/ivCallerAvatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvCallerDigitId" />
+
+    <!-- Caller 4-digit ID -->
+    <TextView
+        android:id="@+id/tvCallerDigitId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:text="ID: 0000"
+        app:layout_constraintTop_toBottomOf="@id/tvCallerName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/llButtons" />
+
+    <!-- Accept / Reject buttons -->
+    <LinearLayout
+        android:id="@+id/llButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Reject (red) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnReject"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="32dp"
+            android:backgroundTint="@color/call_end"
+            app:icon="@drawable/ic_call_end"
+            app:iconSize="36dp" />
+
+        <!-- Accept (green) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAccept"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="32dp"
+            android:backgroundTint="@color/call_incoming"
+            app:icon="@drawable/ic_call_notification"
+            app:iconSize="36dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
