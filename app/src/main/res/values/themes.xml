@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    themes.xml (light)
+    Material 3 theme that uses the seed colour from colors.xml.
+    The app uses DayNight so the OS automatically switches to values-night/themes.xml
+    in dark mode.
+-->
+<resources>
+
+    <!-- Base application theme (light) -->
+    <style name="Theme.WiFiCall" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/seed</item>
+        <item name="colorPrimaryVariant">#005F8E</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">#0096C7</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="colorSurface">#F5F9FC</item>
+        <item name="colorOnSurface">#1A1C1E</item>
+        <item name="colorOnSurfaceVariant">#42474E</item>
+        <item name="colorSurfaceVariant">#DDE3EA</item>
+        <item name="colorError">#BA1A1A</item>
+        <item name="colorOnError">@android:color/white</item>
+    </style>
+
+    <!-- Splash screen theme – shows just a background colour while MainActivity runs -->
+    <style name="Theme.WiFiCall.Splash" parent="Theme.WiFiCall">
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+</resources>
