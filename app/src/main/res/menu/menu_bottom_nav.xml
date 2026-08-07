@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    menu_bottom_nav.xml
+    Bottom navigation items. Each item's id must match the nav graph destination id
+    so NavigationUI.setupWithNavController() can automatically select the right tab.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_call_notification"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/historyFragment"
+        android:icon="@drawable/ic_call_received"
+        android:title="@string/call_history" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_default_avatar"
+        android:title="@string/profile" />
+
+</menu>
