@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    nav_graph.xml
+    Navigation graph for the bottom-navigation shell (HomeActivity).
+    Three top-level destinations correspond to the three bottom nav items.
+    Using fragment destinations (not nested graphs) keeps the setup simple.
+-->
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- Home / dialer screen -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.wificall.app.ui.home.HomeFragment"
+        android:label="Home" />
+
+    <!-- Call history screen -->
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.wificall.app.ui.history.HistoryFragment"
+        android:label="History" />
+
+    <!-- Profile editing screen -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.wificall.app.ui.profile.ProfileFragment"
+        android:label="Profile" />
+
+</navigation>
